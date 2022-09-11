@@ -42,8 +42,8 @@ win_r = Comic_Sans.render('RIGHT WIN!', 1, (0, 255, 0))
 
 
 
-wall_1 = Picture(5, 250, 'wall_1.jpg', 10, 30, 100)
-wall_2 = Picture(665, 250, 'wall_1.jpg', 10, 30, 100)
+wall_1 = Picture(5, 250, 'wall_1.jpg', 10, 10, 100)
+wall_2 = Picture(685, 250, 'wall_1.jpg', 10, 10, 100)
 ball = Picture(350, 250, 'ball.png', 10, 40, 40)
 
 speed_x = 3
@@ -67,11 +67,11 @@ while True:
 
         if sprite.collide_rect(wall_1, ball):
             score += 1
-            speed_x *= -1
+            speed_x = 3
 
         if sprite.collide_rect(wall_2, ball):
             score += 1
-            speed_x *= -1
+            speed_x = -3
 
         if ball.rect.x < 0:
             window.blit(win_r, (250, 150))

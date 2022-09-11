@@ -31,6 +31,12 @@ class Picture(GameSprite):
         if keys_pressed[K_DOWN] and self.rect.y < 495:
             self.rect.y += self.speed
 
+font.init()
+Comic_Sans = font.Font(None, 70)
+win_l = Comic_Sans.render('LEFT WIN!', 1, (0, 255, 0))
+win_r = Comic_Sans.render('RIGHT WIN!', 1, (0, 255, 0))
+
+
 
 wall_1 = Picture(5, 250, 'wall_1.jpg', 10, 30, 100)
 wall_2 = Picture(665, 250, 'wall_1.jpg', 10, 30, 100)
@@ -51,20 +57,28 @@ while True:
     if finish != True:
         window.fill((200, 66, 89))
 
-    if ball.rect.y < 0 or ball.rect.y > 460:
-        speed_y *= -1
+        if ball.rect.y < 0 or ball.rect.y > 460:
+            speed_y *= -1
 
-    if sprite.collide_rect(wall_1, ball):
-        speed_x *= -1
+        if sprite.collide_rect(wall_1, ball):
+            speed_x *= -1
 
-    if sprite.collide_rect(wall_2, ball):
-        speed_x *= -1
+        if sprite.collide_rect(wall_2, ball):
+            speed_x *= -1
 
-    ball.reset()
-    wall_1.reset()
-    wall_1.update_l()
-    wall_2.reset()
-    wall_2.update_r()
+        if ball.rect.x < 0:
+            window.blit(win_r, (250, 150))
+            finish = True
+
+        if ball.rect.x > 665:
+            window.blit(win_l, (250, 150))
+            finish = True
+
+        ball.reset()
+        wall_1.reset()
+        wall_1.update_l()
+        wall_2.reset()
+        wall_2.update_r()
 
 
     display.update()
